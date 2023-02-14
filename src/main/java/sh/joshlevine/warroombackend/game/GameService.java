@@ -30,6 +30,13 @@ public class GameService {
   }
 
   // delete a game
+  public void deleteGame(Long gameId) {
+    boolean exists = gameRepository.existsById(gameId);
+    if (!exists) {
+      throw new IllegalStateException("game with id " + gameId + " does not exist");
+    }
+    gameRepository.deleteById(gameId);
+  }
 
   // update a game
   // @Transactional

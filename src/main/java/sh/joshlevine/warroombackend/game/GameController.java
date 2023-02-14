@@ -3,7 +3,9 @@ package sh.joshlevine.warroombackend.game;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,11 @@ public class GameController {
     newGame.setName(game.getName());
     newGame.setScenario(game.getScenario());
     gameService.addNewGame(newGame);
+  }
+
+  @DeleteMapping(path = "{gameId}")
+  public void deleteGame(@PathVariable("gameId") Long gameId) {
+    gameService.deleteGame(gameId);
   }
 
 }
