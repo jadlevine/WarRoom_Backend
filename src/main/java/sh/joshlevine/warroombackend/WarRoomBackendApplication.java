@@ -1,4 +1,4 @@
-package sh.joshlevine.WarRoom_Backend;
+package sh.joshlevine.warroombackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
