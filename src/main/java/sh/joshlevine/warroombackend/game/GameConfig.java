@@ -1,3 +1,5 @@
+// this can all be removed. it serves ONLY as a seeder file
+
 package sh.joshlevine.warroombackend.game;
 
 import java.util.List;
