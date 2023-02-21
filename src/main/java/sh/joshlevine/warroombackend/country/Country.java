@@ -2,13 +2,11 @@ package sh.joshlevine.warroombackend.country;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,12 +15,15 @@ import sh.joshlevine.warroombackend.game.Game;
 @Setter
 @Getter
 @Entity
-@Table(name = "countries")
+@Table(name = "country")
 public class Country {
   @Id
-  @SequenceGenerator(name = "countries_seq", sequenceName = "countries_seq", allocationSize = 1)
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "countries_seq")
-  @Column(name = "countryId")
+  // @SequenceGenerator(name = "country_seq", sequenceName = "country_seq",
+  // allocationSize = 1)
+  // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator =
+  // "country_seq")
+  // @Column(name = "countryId")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String name;
@@ -33,8 +34,13 @@ public class Country {
   private Integer moralePenalty;
   private Integer moraleTriggerPoint;
 
-  @JsonBackReference // prevents the infinite loop when looking up countries and games (necessary
-                     // when you have both manyToOne AND oneToMany)
+  @JsonBackReference // prevents the infinite loop when looking up countries and games. Necessary for
+                     // bidirectional oneToMany
+  // // @ManyToOne(cascade = CascadeType.ALL)
+  // // @ManyToOne(fetch = FetchType.LAZY)
+  // // or, possibly...
+  // @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
   @ManyToOne
   // @JoinColumn(name = "game_id", nullable = false)
   private Game game;
@@ -42,8 +48,7 @@ public class Country {
   public Country() {
   }
 
-  // does game need to be included in constructor below?
-
+  // public Country(String name, Integer moraleTriggerPoint, Game game) {
   public Country(String name, Integer moraleTriggerPoint) {
     this.name = name;
     this.casualtyCount = 0;

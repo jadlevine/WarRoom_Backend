@@ -9,13 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class GameService {
 
-  // private final GameRepository gameRepository;
-
-  // @Autowired
-  // public GameService(GameRepository gameRepository) {
-  // this.gameRepository = gameRepository;
-  // }
-
   @Autowired
   private GameRepository gameRepository;
 
@@ -28,10 +21,6 @@ public class GameService {
   }
 
   public void addNewGame(Game game) {
-    // Optional<Game> gameOptional = gameRepository.findGameById(game.getId());
-    // if (gameOptional.isPresent()) {
-    // throw new IllegalStateException("game id taken");
-    // }
     gameRepository.save(game);
   }
 
@@ -45,6 +34,6 @@ public class GameService {
   }
 
   // update a game
-  // @Transactional
+  // @Transactional, @Transient?
 
 }

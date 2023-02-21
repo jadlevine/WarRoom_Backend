@@ -25,14 +25,9 @@ public class CountryController {
     return countryService.getCountry(countryId);
   }
 
-  // will eventually need @PutMapping to update a country...
+  // NO need for @PostMapping, because the only time we will create a country is
+  // when a game is initialized
 
-  // maybe this is NOT necessary? only time we are adding new countries (for now)
-  // is when we initialize a game.
-
-  // @PostMapping
-  // public void addNewCountry(@RequestBody Country country) {
-  // countryService.addCountry(country);
-  // }
+  // @PutMapping // to update a country
 
 }
