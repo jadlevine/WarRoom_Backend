@@ -6,26 +6,37 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import sh.joshlevine.warroombackend.country.CountryRepository;
+
 @Service
 public class GameService {
-  private final GameRepository gameRepository;
+
+  // private final GameRepository gameRepository;
+
+  // @Autowired
+  // public GameService(GameRepository gameRepository) {
+  // this.gameRepository = gameRepository;
+  // }
 
   @Autowired
-  public GameService(GameRepository gameRepository) {
-    this.gameRepository = gameRepository;
-  }
+  private GameRepository gameRepository;
 
-  // get all games
+  @Autowired
+  private CountryRepository countryRepository;
+
   public List<Game> getGames() {
     return gameRepository.findAll();
   }
 
-  // add a new game
+  public Optional<Game> getGame(Long gameId) {
+    return gameRepository.findById(gameId);
+  }
+
   public void addNewGame(Game game) {
-    Optional<Game> gameOptional = gameRepository.findGameById(game.getId());
-    if (gameOptional.isPresent()) {
-      throw new IllegalStateException("game id taken");
-    }
+    // Optional<Game> gameOptional = gameRepository.findGameById(game.getId());
+    // if (gameOptional.isPresent()) {
+    // throw new IllegalStateException("game id taken");
+    // }
     gameRepository.save(game);
   }
 
