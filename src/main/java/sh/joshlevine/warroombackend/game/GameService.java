@@ -6,8 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import sh.joshlevine.warroombackend.country.CountryRepository;
-
 @Service
 public class GameService {
 
@@ -20,9 +18,6 @@ public class GameService {
 
   @Autowired
   private GameRepository gameRepository;
-
-  @Autowired
-  private CountryRepository countryRepository;
 
   public List<Game> getGames() {
     return gameRepository.findAll();
