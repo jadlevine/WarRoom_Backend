@@ -1,15 +1,21 @@
 package sh.joshlevine.warroombackend.country;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import sh.joshlevine.warroombackend.casualty.Casualty;
 import sh.joshlevine.warroombackend.game.Game;
 
 @Setter
@@ -45,6 +51,14 @@ public class Country {
   // @JoinColumn(name = "game_id", nullable = false)
   private Game game;
 
+  @OneToMany(mappedBy = "country", cascade = CascadeType.PERSIST)
+  private List<Casualty> casualties = new ArrayList<>();
+
+  public void addCasualtyToCountry(Casualty casualty) {
+    casualty.setCountry(this);
+    casualties.add(casualty);
+  }
+
   public Country() {
   }
 
@@ -64,7 +78,8 @@ public class Country {
   public String toString() {
     return "Country [id=" + id + ", name=" + name + ", casualtyCount=" + casualtyCount + ", stressLevel=" + stressLevel
         + ", medalCount=" + medalCount + ", consumerGoodsCount=" + consumerGoodsCount + ", moralePenalty="
-        + moralePenalty + ", moraleTriggerPoint=" + moraleTriggerPoint + ", game=" + game + "]";
+        + moralePenalty + ", moraleTriggerPoint=" + moraleTriggerPoint + ", game=" + game + ", casualties=" + casualties
+        + "]";
   }
 
 }

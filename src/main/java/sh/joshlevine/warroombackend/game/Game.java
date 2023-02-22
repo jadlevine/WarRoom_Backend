@@ -27,6 +27,9 @@ public class Game {
   private String name;
   private LocalDate date;
   private String scenario;
+  private Integer roundNum;
+  private Boolean battlePhase;
+  private Boolean moralePhase;
 
   @OneToMany(mappedBy = "game", cascade = CascadeType.PERSIST) // so when a game is saved, both the game and all country
                                                                // entities will be persisted to the database
@@ -50,6 +53,9 @@ public class Game {
     this.name = name;
     this.scenario = scenario;
     this.date = LocalDate.now();
+    this.roundNum = 1;
+    this.battlePhase = true;
+    this.moralePhase = false;
     // this.countries = buildCountryList();
     buildCountryList();
   }
@@ -69,7 +75,7 @@ public class Game {
       this.addCountryToGame(germany);
       Country italy = new Country("Italy", 4);
       this.addCountryToGame(italy);
-      Country japan = new Country("Japan", 6);
+      Country japan = new Country("Japan", 7);
       this.addCountryToGame(japan);
       // return new ArrayList<Country>(List.of(china, usa, uk, ussr, germany, italy,
       // japan));
