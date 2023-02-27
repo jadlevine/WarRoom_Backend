@@ -39,6 +39,7 @@ public class Country {
   private Integer consumerGoodsCount;
   private Integer moralePenalty;
   private Integer moraleTriggerPoint;
+  private Integer gameIndex;
 
   @JsonBackReference // prevents the infinite loop when looking up countries and games. Necessary for
                      // bidirectional oneToMany
@@ -67,7 +68,7 @@ public class Country {
   public Country() {
   }
 
-  public Country(String name, Integer moraleTriggerPoint) {
+  public Country(String name, Integer moraleTriggerPoint, Integer gameIndex) {
     this.name = name;
     this.casualtyTotalValue = 0;
     this.stressLevel = 0;
@@ -75,6 +76,7 @@ public class Country {
     this.consumerGoodsCount = 0;
     this.moralePenalty = 0;
     this.moraleTriggerPoint = moraleTriggerPoint;
+    this.gameIndex = gameIndex;
   }
 
   @Override

@@ -65,58 +65,58 @@ public class Game {
   // private List<Country> buildCountryList() {
   private void buildCountryList() {
     if (scenario.equals("Global")) {
-      Country china = new Country("China", 4);
+      Country china = new Country("China", 4, 1);
       this.addCountryToGame(china);
-      Country usa = new Country("USA", 5);
+      Country usa = new Country("USA", 5, 2);
       this.addCountryToGame(usa);
-      Country uk = new Country("UK", 6);
+      Country uk = new Country("UK", 6, 3);
       this.addCountryToGame(uk);
-      Country ussr = new Country("USSR", 6);
+      Country ussr = new Country("USSR", 6, 4);
       this.addCountryToGame(ussr);
-      Country germany = new Country("Germany", 6);
+      Country germany = new Country("Germany", 6, 5);
       this.addCountryToGame(germany);
-      Country italy = new Country("Italy", 4);
+      Country italy = new Country("Italy", 4, 6);
       this.addCountryToGame(italy);
-      Country japan = new Country("Japan", 7);
+      Country japan = new Country("Japan", 7, 7);
       this.addCountryToGame(japan);
       // return new ArrayList<Country>(List.of(china, usa, uk, ussr, germany, italy,
       // japan));
     } else if (scenario.equals("War In Europe")) {
-      Country usa = new Country("USA", 4);
+      Country usa = new Country("USA", 4, 1);
       this.addCountryToGame(usa);
-      Country uk = new Country("UK", 4);
+      Country uk = new Country("UK", 4, 2);
       this.addCountryToGame(uk);
-      Country ussr = new Country("USSR", 5);
+      Country ussr = new Country("USSR", 5, 3);
       this.addCountryToGame(ussr);
-      Country germany = new Country("Germany", 6);
+      Country germany = new Country("Germany", 6, 4);
       this.addCountryToGame(germany);
-      Country italy = new Country("Italy", 4);
+      Country italy = new Country("Italy", 4, 5);
       this.addCountryToGame(italy);
       // return new ArrayList<Country>(List.of(usa, uk, ussr, germany, italy));
     } else if (scenario.equals("Eastern Front")) {
-      Country ussr = new Country("USSR", 6);
+      Country ussr = new Country("USSR", 6, 1);
       this.addCountryToGame(ussr);
-      Country germany = new Country("Germany", 6);
+      Country germany = new Country("Germany", 6, 2);
       this.addCountryToGame(germany);
       // return new ArrayList<Country>(List.of(ussr, germany));
     } else if (scenario.equals("Pacific")) {
-      Country china = new Country("China", 4);
+      Country china = new Country("China", 4, 1);
       this.addCountryToGame(china);
-      Country usa = new Country("USA", 4);
+      Country usa = new Country("USA", 4, 2);
       this.addCountryToGame(usa);
-      Country uk = new Country("UK", 4);
+      Country uk = new Country("UK", 4, 3);
       this.addCountryToGame(uk);
-      Country japan = new Country("Japan", 6);
+      Country japan = new Country("Japan", 6, 4);
       this.addCountryToGame(japan);
       // return new ArrayList<Country>(List.of(china, usa, uk, japan));
     } else if (scenario.equals("North Africa")) {
-      Country usa = new Country("USA", 4);
+      Country usa = new Country("USA", 4, 1);
       this.addCountryToGame(usa);
-      Country uk = new Country("UK", 4);
+      Country uk = new Country("UK", 4, 2);
       this.addCountryToGame(uk);
-      Country germany = new Country("Germany", 6);
+      Country germany = new Country("Germany", 6, 3);
       this.addCountryToGame(germany);
-      Country italy = new Country("Italy", 4);
+      Country italy = new Country("Italy", 4, 4);
       this.addCountryToGame(italy);
       // return new ArrayList<Country>(List.of(usa, uk, germany, italy));
     } else {
