@@ -40,6 +40,18 @@ public class CasualtyService {
     casualtyRepository.save(casualtyRequest);
   }
 
-  // public void deleteCasualtyById() {}
+  public void deleteCasualty(Long countryId, String unitType) {
+    // find country
+    Country country = countryRepository.findById(countryId)
+        .orElseThrow(() -> new IllegalStateException("country with id: " + countryId + ", not found"));
+    // find most recent casualty of country by unitType
+    Casualty casualty = casualtyRepository.findTopByCountryIdAndUnitTypeOrderByIdDesc(countryId, unitType)
+        .orElseThrow(() -> new IllegalStateException(
+            "Casualty for country: " + countryId + " with unitType: " + unitType + ", not found"));
+    // update country.casualtyTotalValue (-= casualty.value)
+    country.removeCasualty(casualty);
+    // delete the casualty (remove entity, and remove from list of country)
+    casualtyRepository.delete(casualty);
+  }
 
 }

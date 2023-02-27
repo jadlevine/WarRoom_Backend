@@ -11,4 +11,6 @@ public interface CasualtyRepository extends JpaRepository<Casualty, Long> {
   @Query("select cas from Casualty cas join fetch cas.country where cas.id = ?1")
   public Optional<Casualty> findById(Long id);
 
+  public Optional<Casualty> findTopByCountryIdAndUnitTypeOrderByIdDesc(Long countryId, String unitType);
+
 }

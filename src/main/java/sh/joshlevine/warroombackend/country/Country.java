@@ -60,6 +60,10 @@ public class Country {
     this.casualtyTotalValue += casualty.getValue();
   }
 
+  public void removeCasualty(Casualty casualty) {
+    this.casualtyTotalValue -= casualty.getValue();
+  }
+
   public Country() {
   }
 
