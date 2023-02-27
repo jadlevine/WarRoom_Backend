@@ -4,23 +4,25 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping(path = "api/vi/warroom/countries")
+@RequestMapping(path = "api/v1/warroom")
 public class CountryController {
   @Autowired
   private CountryService countryService;
 
-  @GetMapping
+  @GetMapping(path = "/countries")
   public List<Country> getCountries() {
     return countryService.getCountries();
   }
 
-  @GetMapping(path = "/{countryId}")
+  @GetMapping(path = "/countries/{countryId}")
   public Optional<Country> getCountry(@PathVariable("countryId") Long countryId) {
     return countryService.getCountry(countryId);
   }

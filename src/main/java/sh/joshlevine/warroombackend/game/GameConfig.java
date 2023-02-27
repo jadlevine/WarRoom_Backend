@@ -14,8 +14,8 @@
 // @Bean
 // CommandLineRunner commandLineRunner(GameRepository repo) {
 // return args -> {
-// Game testGame1 = new Game("testGame1", "global");
-// Game testGame2 = new Game("testGame2", "pacific");
+// Game testGame1 = new Game("testGame1", "Global");
+// Game testGame2 = new Game("testGame2", "Pacific");
 // repo.saveAll(List.of(testGame1, testGame2));
 // };
 // }

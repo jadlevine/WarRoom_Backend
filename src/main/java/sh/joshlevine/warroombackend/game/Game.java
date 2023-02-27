@@ -1,6 +1,6 @@
 package sh.joshlevine.warroombackend.game;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +26,7 @@ public class Game {
   private Long id;
 
   private String name;
-  private LocalDate date;
+  private LocalDateTime date;
   private String scenario;
   private Integer roundNum;
   private Boolean battlePhase;
@@ -39,6 +40,7 @@ public class Game {
   // CascadeType.REFRESH })
   // @OneToMany
   // @JoinColumn(name = "game_id")
+  @OrderBy("id ASC") // ensures country list sorted when fetched
   private List<Country> countries = new ArrayList<>();
 
   public void addCountryToGame(Country country) {
@@ -52,7 +54,7 @@ public class Game {
   public Game(String name, String scenario) {
     this.name = name;
     this.scenario = scenario;
-    this.date = LocalDate.now();
+    this.date = LocalDateTime.now();
     this.roundNum = 1;
     this.battlePhase = true;
     this.moralePhase = false;
@@ -62,7 +64,7 @@ public class Game {
 
   // private List<Country> buildCountryList() {
   private void buildCountryList() {
-    if (scenario.equals("global")) {
+    if (scenario.equals("Global")) {
       Country china = new Country("China", 4);
       this.addCountryToGame(china);
       Country usa = new Country("USA", 5);
@@ -79,7 +81,7 @@ public class Game {
       this.addCountryToGame(japan);
       // return new ArrayList<Country>(List.of(china, usa, uk, ussr, germany, italy,
       // japan));
-    } else if (scenario.equals("warInEurope")) {
+    } else if (scenario.equals("War In Europe")) {
       Country usa = new Country("USA", 4);
       this.addCountryToGame(usa);
       Country uk = new Country("UK", 4);
@@ -91,13 +93,13 @@ public class Game {
       Country italy = new Country("Italy", 4);
       this.addCountryToGame(italy);
       // return new ArrayList<Country>(List.of(usa, uk, ussr, germany, italy));
-    } else if (scenario.equals("easternFront")) {
+    } else if (scenario.equals("Eastern Front")) {
       Country ussr = new Country("USSR", 6);
       this.addCountryToGame(ussr);
       Country germany = new Country("Germany", 6);
       this.addCountryToGame(germany);
       // return new ArrayList<Country>(List.of(ussr, germany));
-    } else if (scenario.equals("pacific")) {
+    } else if (scenario.equals("Pacific")) {
       Country china = new Country("China", 4);
       this.addCountryToGame(china);
       Country usa = new Country("USA", 4);
@@ -107,7 +109,7 @@ public class Game {
       Country japan = new Country("Japan", 6);
       this.addCountryToGame(japan);
       // return new ArrayList<Country>(List.of(china, usa, uk, japan));
-    } else if (scenario.equals("northAfrica")) {
+    } else if (scenario.equals("North Africa")) {
       Country usa = new Country("USA", 4);
       this.addCountryToGame(usa);
       Country uk = new Country("UK", 4);

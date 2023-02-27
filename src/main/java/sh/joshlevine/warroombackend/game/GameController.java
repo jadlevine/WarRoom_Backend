@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,37 +13,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping(path = "api/v1/warroom/games")
+@RequestMapping(path = "api/v1/warroom")
 public class GameController {
 
   @Autowired
   private GameService gameService;
 
-  @GetMapping
+  @GetMapping(path = "/games")
   public List<Game> getGames() {
     return gameService.getGames();
   }
 
-  @GetMapping(path = "/{gameId}")
+  @GetMapping(path = "/games/{gameId}")
   public Optional<Game> getGame(@PathVariable("gameId") Long gameId) {
     return gameService.getGame(gameId);
   }
 
-  @PostMapping
+  @PostMapping(path = "/games")
   public void addGame(@RequestBody Game game) {
     Game newGame = new Game(game.getName(), game.getScenario());
     gameService.addNewGame(newGame);
   }
 
-  @DeleteMapping(path = "/{gameId}")
+  @DeleteMapping(path = "/games/{gameId}")
   public void deleteGame(@PathVariable("gameId") Long gameId) {
     gameService.deleteGame(gameId);
   }
 
-  // for update/putmapping - we want to be able to update the name or scenario of
-  // the game, so, we'll need a path & pathVariable (like delete request) AND a
-  // requestBody (like post request)... (or we could have separate routes for
-  // updating the name and scenario?)
+  // game updates need to include advancing the round number, toggling battlePhase
+  // vs moralePhase
+  // probably unnecessary to update the name, or scenario... if user doesn't like
+  // it, just delete and start over
+  // @PutMapping
 
 }

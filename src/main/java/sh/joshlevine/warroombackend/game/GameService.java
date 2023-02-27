@@ -17,6 +17,8 @@ public class GameService {
   }
 
   public Optional<Game> getGame(Long gameId) {
+    // Optional<Game> game = gameRepository.findById(gameId);
+    // sort countries by id before returning
     return gameRepository.findById(gameId);
   }
 

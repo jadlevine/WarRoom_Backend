@@ -33,7 +33,7 @@ public class Country {
   private Long id;
 
   private String name;
-  private Integer casualtyCount;
+  private Integer casualtyTotalValue;
   private Integer stressLevel;
   private Integer medalCount;
   private Integer consumerGoodsCount;
@@ -57,26 +57,26 @@ public class Country {
   public void addCasualtyToCountry(Casualty casualty) {
     casualty.setCountry(this);
     casualties.add(casualty);
+    this.casualtyTotalValue += casualty.getValue();
   }
 
   public Country() {
   }
 
-  // public Country(String name, Integer moraleTriggerPoint, Game game) {
   public Country(String name, Integer moraleTriggerPoint) {
     this.name = name;
-    this.casualtyCount = 0;
+    this.casualtyTotalValue = 0;
     this.stressLevel = 0;
     this.medalCount = 0;
     this.consumerGoodsCount = 0;
     this.moralePenalty = 0;
     this.moraleTriggerPoint = moraleTriggerPoint;
-    // this.game = game;
   }
 
   @Override
   public String toString() {
-    return "Country [id=" + id + ", name=" + name + ", casualtyCount=" + casualtyCount + ", stressLevel=" + stressLevel
+    return "Country [id=" + id + ", name=" + name + ", casualtyTotalValue=" + casualtyTotalValue + ", stressLevel="
+        + stressLevel
         + ", medalCount=" + medalCount + ", consumerGoodsCount=" + consumerGoodsCount + ", moralePenalty="
         + moralePenalty + ", moraleTriggerPoint=" + moraleTriggerPoint + ", game=" + game + ", casualties=" + casualties
         + "]";
