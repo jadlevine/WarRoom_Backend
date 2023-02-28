@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,6 +32,11 @@ public class CountryController {
   // NO need for @PostMapping, because the only time we will create a country is
   // when a game is initialized
 
-  // @PutMapping // to update a country
-
+  @PutMapping(path = "/countries/update")
+  public void updateCountry(@RequestBody Country country) {
+    countryService.updateCountry(country);
+  }
+  ///////////////////
+  // YOU ARE HERE //
+  ///////////////////
 }
