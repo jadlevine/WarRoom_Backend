@@ -58,11 +58,9 @@ public class Game {
     this.roundNum = 1;
     this.battlePhase = true;
     this.moralePhase = false;
-    // this.countries = buildCountryList();
     buildCountryList();
   }
 
-  // private List<Country> buildCountryList() {
   private void buildCountryList() {
     if (scenario.equals("Global")) {
       Country china = new Country("China", 4, 1);

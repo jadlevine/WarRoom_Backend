@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,10 +43,9 @@ public class GameController {
     gameService.deleteGame(gameId);
   }
 
-  // game updates need to include advancing the round number, toggling battlePhase
-  // vs moralePhase
-  // probably unnecessary to update the name, or scenario... if user doesn't like
-  // it, just delete and start over
-  // @PutMapping
+  @PutMapping(path = "/games/update")
+  public void updateGame(@RequestBody Game gameRequest) {
+    gameService.updateGame(gameRequest);
+  }
 
 }

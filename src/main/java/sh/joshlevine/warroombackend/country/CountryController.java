@@ -33,10 +33,8 @@ public class CountryController {
   // when a game is initialized
 
   @PutMapping(path = "/countries/update")
-  public void updateCountry(@RequestBody Country country) {
-    countryService.updateCountry(country);
+  public void updateCountry(@RequestBody Country countryRequest) {
+    countryService.updateCountry(countryRequest);
   }
-  ///////////////////
-  // YOU ARE HERE //
-  ///////////////////
+
 }

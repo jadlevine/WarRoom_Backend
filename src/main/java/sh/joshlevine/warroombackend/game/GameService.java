@@ -17,8 +17,6 @@ public class GameService {
   }
 
   public Optional<Game> getGame(Long gameId) {
-    // Optional<Game> game = gameRepository.findById(gameId);
-    // sort countries by id before returning
     return gameRepository.findById(gameId);
   }
 
@@ -26,7 +24,6 @@ public class GameService {
     gameRepository.save(game);
   }
 
-  // delete a game
   public void deleteGame(Long gameId) {
     boolean exists = gameRepository.existsById(gameId);
     if (!exists) {
@@ -37,5 +34,24 @@ public class GameService {
 
   // update a game
   // @Transactional, @Transient?
+  public void updateGame(Game gameRequest) {
+    Game game = gameRepository.findById(gameRequest.getId())
+        .orElseThrow(() -> new IllegalStateException("game with id: " + gameRequest.getId() + ", not found"));
+
+    // this.roundNum = 1;
+    if (gameRequest.getRoundNum() != game.getRoundNum()) {
+      game.setRoundNum(gameRequest.getRoundNum());
+    }
+    // this.battlePhase = true;
+    if (gameRequest.getBattlePhase() != game.getBattlePhase()) {
+      game.setBattlePhase(gameRequest.getBattlePhase());
+    }
+    // this.moralePhase = false;
+    if (gameRequest.getMoralePhase() != game.getMoralePhase()) {
+      game.setMoralePhase(gameRequest.getMoralePhase());
+    }
+
+    gameRepository.save(game);
+  }
 
 }

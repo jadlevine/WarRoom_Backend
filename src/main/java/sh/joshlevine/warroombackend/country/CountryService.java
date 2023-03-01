@@ -25,8 +25,6 @@ public class CountryService {
   }
 
   public void updateCountry(Country countryRequest) {
-    System.out.println(countryRequest.getName());
-    System.out.println(countryRequest.getStressLevel());
     Country country = countryRepository.findById(countryRequest.getId())
         .orElseThrow(() -> new IllegalStateException("country with id: " + countryRequest.getId() + ", not found"));
 
@@ -53,8 +51,6 @@ public class CountryService {
     if (countryRequest.getMoralePenalty() != country.getMoralePenalty()) {
       country.setMoralePenalty(countryRequest.getMoralePenalty());
     }
-    // YOU ARE HERE //
-    // IS THIS GOING TO WORK?? //
 
     countryRepository.save(country);
   }

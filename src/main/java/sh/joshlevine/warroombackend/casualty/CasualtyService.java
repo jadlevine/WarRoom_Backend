@@ -26,12 +26,7 @@ public class CasualtyService {
     return casualtyRepository.findById(casualtyId);
   }
 
-  // public List<Casualty> getCasualtiesByCountry() {}
-  // public List<Casualty> getCasualtiesByCountryAndRound() {}
-
-  // @Transactional
   public void addCasualty(Casualty casualtyRequest, Long countryId) {
-    // find country
     Country country = countryRepository.findById(countryId)
         .orElseThrow(() -> new IllegalStateException("country with id: " + countryId + ", not found"));
 
